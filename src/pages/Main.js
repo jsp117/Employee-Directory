@@ -12,6 +12,7 @@ function Main() {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [displayUsers, setDisplay] = useState([]);
+    const [sort, setSort] = useState("name");
 
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function Main() {
                 setUsers(data.data.results);
                 setDisplay(data.data.results);
                 setLoading(false);
-                console.log("users: ", users);
+                // console.log("users: ", users);
             })
 
         return () => { console.log("cleanup") }
@@ -46,7 +47,7 @@ function Main() {
     }, [])
 
     useEffect(() => {
-        console.log("newsearch")
+        console.log("new search")
     }, [displayUsers])
 
     function searchUsers(event) {

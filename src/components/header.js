@@ -3,10 +3,10 @@ import Search from "./searchbar";
 
 function Header({onSubmit, results}) {
     return (
-        <div className="header container-fluid">
+        <h3 className="header container-fluid">
             Employee Directory
             <Search onSubmit={onSubmit} results={results}/>
-        </div>
+        </h3>
     )
 }
 
