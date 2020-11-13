@@ -5,8 +5,11 @@
 .sort{
     cursor: pointer;
 }
-svg{
+/* svg{
     transform: translate(-160px, 5px)
+} */
+.col{
+    width: 20%;
 }
 th{
     padding-bottom: 25px;

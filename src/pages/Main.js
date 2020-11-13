@@ -47,14 +47,15 @@ function Main() {
 
     // sort arrays
     function sort(event) {
+        console.log(event);
         event.preventDefault();
         // console.log("Working");
-        let type = event.target.outerText.toLowerCase();
+        let type = event.target.outerText.substring(0, 3).toLowerCase();
         // console.log("type", type);
         let types = {
-            name: "name",
-            phone: "phone",
-            email: "email",
+            nam: "name",
+            pho: "phone",
+            ema: "email",
             dob: "dob"
         }
         let sort = types[type];
