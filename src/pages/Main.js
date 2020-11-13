@@ -8,9 +8,10 @@ import "./style.css"
 // main should hold users in it, below main should be functional components that show the user, another component for searching
 
 function Main() {
-    const [users, setUsers] = useState([])
-    const [loading, setLoading] = useState(true)
-    const [search, setSearch] = useState("")
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState("");
+    const [displayUsers, setDisplay] = useState([]);
 
 
     useEffect(() => {
@@ -19,9 +20,12 @@ function Main() {
             .then((data) => {
                 console.log(data.data.results);
                 setUsers(data.data.results);
+                setDisplay(data.data.results);
                 setLoading(false);
                 console.log("users: ", users);
             })
+
+        return () => { console.log("cleanup") }
 
         // if (!search) {
         //     console.log("running")
@@ -41,17 +45,24 @@ function Main() {
         // }
     }, [])
 
+    useEffect(() => {
+        console.log("newsearch")
+    }, [displayUsers])
+
     function searchUsers(event) {
         event.preventDefault();
         setSearch(event.target.value);
         console.log(event.target.value);
+        console.log("search", search);
+        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()));
+        setDisplay(arr);
     }
 
     return (
         // displays loading if users = 0
         <div>
             <Header onSubmit={searchUsers} results={search} />
-            <Table loading={loading} users={users} />
+            <Table loading={loading} users={displayUsers} />
         </div>
 
     )
