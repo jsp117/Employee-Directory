@@ -7,7 +7,6 @@ function Search({ onSubmit, results }) {
             <form className="form-group">
                 <input className="form-control" type="text" placeholder="Enter Employee Name" onChange={onSubmit} value={results}>
                 </input><br />
-                {/* <button className="btn btn-dark" onClick={onSubmit}>Search</button> */}
             </form>
         </div>
     )
