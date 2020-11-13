@@ -2,9 +2,13 @@
     margin-left: -50px;
     overflow-x: hidden;
 }
-
-th{
+.sort{
     cursor: pointer;
+}
+svg{
+    transform: translate(-160px, 5px)
+}
+th{
     padding-bottom: 25px;
     /* border-bottom: 5px outset; */
 }

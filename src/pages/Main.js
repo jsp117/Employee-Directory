@@ -5,16 +5,16 @@ import Header from "../components/header";
 import API from "../utils/API";
 import "./style.css"
 
-// main should hold users in it, below main should be functional components that show the user, another component for searching
 
 function Main() {
+    // initialize states
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [displayUsers, setDisplay] = useState([]);
     const [sortType, setSort] = useState("ascend");
 
-
+    // initial render
     useEffect(() => {
         // console.log("running");
         API.Query()
@@ -30,10 +30,12 @@ function Main() {
 
     }, [])
 
+    // re-render every time displayUsers changes
     useEffect(() => {
-        console.log("new search or sort");
+        // console.log("new search or sort");
     }, [displayUsers])
 
+    // search users
     function searchUsers(event) {
         event.preventDefault();
         setSearch(event.target.value);
@@ -43,11 +45,12 @@ function Main() {
         setDisplay(arr);
     };
 
+    // sort arrays
     function sort(event) {
         event.preventDefault();
-        console.log("Working");
+        // console.log("Working");
         let type = event.target.outerText.toLowerCase();
-        console.log("type", type);
+        // console.log("type", type);
         let types = {
             name: "name",
             phone: "phone",
@@ -55,37 +58,64 @@ function Main() {
             dob: "dob"
         }
         let sort = types[type];
-        console.log("sorttype", sort);
+        // console.log("sorttype", sort);
         // let sorted = displayUsers.sort((a, b) => b[sort] - a[sort]);
         let array = displayUsers;
-        if (sortType === "ascend") {
-            array.sort((a, b) => {
-                let fa = a.name.first.toLowerCase(),
-                    fb = b.name.first.toLowerCase();
-                if (fa < fb) {
-                    return -1;
-                }
-                if (fa > fb) {
-                    return 1;
-                }
-                return 0;
-            });
-            console.log("sorted", array);
-            setSort("descend");
-        }else{
-            array.sort((a, b) => {
-                let fa = a.name.first.toLowerCase(),
-                    fb = b.name.first.toLowerCase();
-                if (fa < fb) {
-                    return 1;
-                }
-                if (fa > fb) {
-                    return -1;
-                }
-                return 0;
-            });
-            console.log("sorted", array);
-            setSort("ascend");
+        if (sort === "name") {
+            if (sortType === "ascend") {
+                array.sort((a, b) => {
+                    let fa = a.name.first.toLowerCase(),
+                        fb = b.name.first.toLowerCase();
+                    if (fa < fb) {
+                        return -1;
+                    }
+                    if (fa > fb) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                // console.log("sorted", array);
+                setSort("descend");
+            } else {
+                array.sort((a, b) => {
+                    let fa = a.name.first.toLowerCase(),
+                        fb = b.name.first.toLowerCase();
+                    if (fa < fb) {
+                        return 1;
+                    }
+                    if (fa > fb) {
+                        return -1;
+                    }
+                    return 0;
+                });
+                // console.log("sorted", array);
+                setSort("ascend");
+            }
+        } else if (sort === "phone") {
+            if (sortType === "ascend") {
+                array.sort((a, b) => {
+                    return parseInt(a.phone.substring(1, 3)) - parseInt(b.phone.substring(1, 3));
+                });
+                setSort("descend");
+            } else {
+                array.sort((a, b) => {
+                    return parseInt(b.phone.substring(1, 3)) - parseInt(a.phone.substring(1, 3));
+                });
+                setSort("ascend");
+            }
+        }
+        else if (sort === "dob") {
+            if (sortType === "ascend") {
+                array.sort((a, b) => {
+                    return a.dob.age - b.dob.age;
+                });
+                setSort("descend");
+            } else {
+                array.sort((a, b) => {
+                    return b.dob.age - a.dob.age;
+                });
+                setSort("ascend");
+            }
         }
         setDisplay([...array]);
     }
