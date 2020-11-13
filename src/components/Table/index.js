@@ -11,7 +11,7 @@ function Table({ loading, users, sort }) {
                         <th onClick={sort} value="name" className="col">Name</th>
                         <th onClick={sort} value="phone" className="col">Phone</th>
                         <th onClick={sort} value="email" className="col">Email</th>
-                        <th onClick={sort} value="dob" className="col">Date of Birth</th>
+                        <th onClick={sort} value="dob" className="col">DOB</th>
                     </tr>
                 </thead>
                 <tbody>{!loading ? users.map(x => {

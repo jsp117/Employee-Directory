@@ -11,15 +11,15 @@ function Main() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
-    let [displayUsers, setDisplay] = useState([]);
-    // const [sort, setSort] = useState("name");
+    const [displayUsers, setDisplay] = useState([]);
+    // const [sortType, setSort] = useState("ascend");
 
 
     useEffect(() => {
         // console.log("running");
         API.Query()
             .then((data) => {
-                console.log(data.data.results);
+                // console.log(data.data.results);
                 setUsers(data.data.results);
                 setDisplay(data.data.results);
                 setLoading(false);
@@ -31,7 +31,7 @@ function Main() {
     }, [])
 
     useEffect(() => {
-        // console.log("new search")
+        console.log("new search or sort");
     }, [displayUsers])
 
     function searchUsers(event) {
@@ -70,7 +70,8 @@ function Main() {
             return 0;
         });
         console.log("sorted", array);
-        setDisplay(array);
+        
+        setDisplay([...array]);
     }
 
 
