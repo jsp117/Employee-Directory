@@ -19,7 +19,7 @@ function Main() {
         console.log("running");
         API.Query()
             .then((data) => {
-                console.log(data.data.results);
+                // console.log(data.data.results);
                 setUsers(data.data.results);
                 setDisplay(data.data.results);
                 setLoading(false);
@@ -28,34 +28,19 @@ function Main() {
 
         return () => { console.log("cleanup") }
 
-        // if (!search) {
-        //     console.log("running")
-        //     axios.get("https://randomuser.me/api/?results=200&nat=us")
-        //         .then((data) => {
-        //             console.log(data);
-        //             setUsers(data.data.results);
-        //             setLoading(false);
-        //         })
-        // } else {
-        //     axios.get(`https://randomuser.me/api/?${search}`)
-        //         .then((data) => {
-        //             console.log(data);
-        //             setUsers(data.data.results);
-        //             setLoading(false);
-        //         })
-        // }
     }, [])
 
     useEffect(() => {
-        console.log("new search")
+        // console.log("new search")
     }, [displayUsers])
 
     function searchUsers(event) {
         event.preventDefault();
         setSearch(event.target.value);
-        console.log(event.target.value);
-        console.log("search", search);
-        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()) || x.name.last.toLowerCase().includes(event.target.value.toLowerCase()) || x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase()) || x.dob.date.split("T")[0].includes(event.target.value));
+        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()) 
+        || x.name.last.toLowerCase().includes(event.target.value.toLowerCase()) 
+        || x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase()) 
+        || x.dob.date.split("T")[0].includes(event.target.value));
         setDisplay(arr);
     }
 
