@@ -1,17 +1,17 @@
 import React from "react";
 import "./style.css"
 
-function Table({ loading, users }) {
+function Table({ loading, users, sort }) {
     return (
         <div id="table">
             <table className="container-fluid">
                 <thead>
                     <tr className="row pt-5">
                         <th className="col">Picture</th>
-                        <th className="col">Name</th>
-                        <th className="col">Phone</th>
-                        <th className="col">Email</th>
-                        <th className="col">Date of Birth</th>
+                        <th onClick={sort} value="name" className="col">Name</th>
+                        <th onClick={sort} value="phone" className="col">Phone</th>
+                        <th onClick={sort} value="email" className="col">Email</th>
+                        <th onClick={sort} value="dob" className="col">Date of Birth</th>
                     </tr>
                 </thead>
                 <tbody>{!loading ? users.map(x => {

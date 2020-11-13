@@ -11,22 +11,22 @@ function Main() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
-    const [displayUsers, setDisplay] = useState([]);
-    const [sort, setSort] = useState("name");
+    let [displayUsers, setDisplay] = useState([]);
+    // const [sort, setSort] = useState("name");
 
 
     useEffect(() => {
         // console.log("running");
         API.Query()
             .then((data) => {
-                // console.log(data.data.results);
+                console.log(data.data.results);
                 setUsers(data.data.results);
                 setDisplay(data.data.results);
                 setLoading(false);
                 // console.log("users: ", users);
             })
 
-        return () => {}
+        return () => { }
 
     }, [])
 
@@ -37,18 +37,48 @@ function Main() {
     function searchUsers(event) {
         event.preventDefault();
         setSearch(event.target.value);
-        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()) 
-        || x.name.last.toLowerCase().includes(event.target.value.toLowerCase()) 
-        || x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase()) 
-        || x.dob.date.split("T")[0].includes(event.target.value) || (x.name.first.toLowerCase() + x.name.last.toLowerCase()).includes(event.target.value.toLowerCase().replace(/\s+/g, '')));
+        let arr = users.filter(x => x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase())
+            || x.dob.date.split("T")[0].includes(event.target.value)
+            || (x.name.first.toLowerCase() + x.name.last.toLowerCase()).includes(event.target.value.toLowerCase().replace(/\s+/g, '')));
         setDisplay(arr);
     };
+
+    function sort(event) {
+        event.preventDefault();
+        console.log("Working");
+        let type = event.target.outerText.toLowerCase();
+        console.log("type", type);
+        let types = {
+            name: "name",
+            phone: "phone",
+            email: "email",
+            dob: "dob"
+        }
+        let sort = types[type];
+        console.log("sorttype", sort);
+        // let sorted = displayUsers.sort((a, b) => b[sort] - a[sort]);
+        let array = displayUsers;
+        array.sort((a, b) => {
+            let fa = a.name.first.toLowerCase(),
+                fb = b.name.first.toLowerCase();
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+        console.log("sorted", array);
+        setDisplay(array);
+    }
+
 
     return (
         // displays loading if users = 0
         <div>
             <Header onSubmit={searchUsers} results={search} />
-            <Table loading={loading} users={displayUsers} />
+            <Table loading={loading} users={displayUsers} sort={sort} />
         </div>
 
     )
