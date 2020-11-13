@@ -12,7 +12,7 @@ function Main() {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [displayUsers, setDisplay] = useState([]);
-    // const [sortType, setSort] = useState("ascend");
+    const [sortType, setSort] = useState("ascend");
 
 
     useEffect(() => {
@@ -58,19 +58,35 @@ function Main() {
         console.log("sorttype", sort);
         // let sorted = displayUsers.sort((a, b) => b[sort] - a[sort]);
         let array = displayUsers;
-        array.sort((a, b) => {
-            let fa = a.name.first.toLowerCase(),
-                fb = b.name.first.toLowerCase();
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        });
-        console.log("sorted", array);
-        
+        if (sortType === "ascend") {
+            array.sort((a, b) => {
+                let fa = a.name.first.toLowerCase(),
+                    fb = b.name.first.toLowerCase();
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
+            console.log("sorted", array);
+            setSort("descend");
+        }else{
+            array.sort((a, b) => {
+                let fa = a.name.first.toLowerCase(),
+                    fb = b.name.first.toLowerCase();
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+            });
+            console.log("sorted", array);
+            setSort("ascend");
+        }
         setDisplay([...array]);
     }
 
