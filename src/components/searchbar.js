@@ -6,7 +6,7 @@ function Search({ search }) {
             <label>Employee: </label>
             <form className="form-group">
                 <input className="form-control" type="text" placeholder="Enter Employee Name">
-                </input>
+                </input><br />
                 <button className="btn btn-dark" onClick={search}>Search</button>
             </form>
         </div>

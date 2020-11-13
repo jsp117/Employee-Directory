@@ -3,7 +3,7 @@ import Search from "./searchbar";
 
 function Header({search}) {
     return (
-        <div className="header">
+        <div className="header container-fluid">
             Employee Directory
             <Search search={search}/>
         </div>
