@@ -6,12 +6,12 @@
 th{
     cursor: pointer;
     padding-bottom: 25px;
-    border-bottom: 5px outset;
+    /* border-bottom: 5px outset; */
 }
 img{
     transform: translateY(-10px);
 }
 td{
     padding-top: 20px;
-    border: 5px outset;
+    /* border: 5px outset; */
 }

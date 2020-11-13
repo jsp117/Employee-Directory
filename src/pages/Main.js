@@ -14,16 +14,14 @@ function Main() {
 
 
     useEffect(() => {
+        console.log("running");
         API.Query()
             .then((data) => {
-                console.log(data);
+                console.log(data.data.results);
                 setUsers(data.data.results);
                 setLoading(false);
                 console.log("users: ", users);
             })
-
-
-
 
         // if (!search) {
         //     console.log("running")
@@ -43,14 +41,16 @@ function Main() {
         // }
     }, [])
 
-    function searchUsers() {
-        setUsers([]);
+    function searchUsers(event) {
+        event.preventDefault();
+        setSearch(event.target.value);
+        console.log(event.target.value);
     }
 
     return (
         // displays loading if users = 0
         <div>
-            <Header search={searchUsers} />
+            <Header onSubmit={searchUsers} results={search} />
             <Table loading={loading} users={users} />
         </div>
 
