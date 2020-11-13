@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Users from "../components/users";
+import Table from "../components/Table";
 import Header from "../components/header";
 import "./style.css"
 
@@ -39,7 +39,7 @@ function Main() {
         // displays loading if users = 0
         <div>
             <Header search={searchUsers} />
-            <Users loading={loading} users={users} />
+            <Table loading={loading} users={users} />
         </div>
 
     )
