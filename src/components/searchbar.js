@@ -2,12 +2,14 @@ import React from "react";
 
 function Search({ search }) {
     return (
-        <form>
-            <input type="text">
-
-            </input>
-            <button onClick={search}></button>
-        </form>
+        <div className="container">
+            <label>Employee: </label>
+            <form className="form-group">
+                <input className="form-control" type="text" placeholder="Enter Employee Name" value>
+                </input>
+                <button className="btn btn-dark" onClick={search}>Search</button>
+            </form>
+        </div>
     )
 }
 
