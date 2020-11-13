@@ -16,7 +16,7 @@ function Main() {
 
 
     useEffect(() => {
-        console.log("running");
+        // console.log("running");
         API.Query()
             .then((data) => {
                 // console.log(data.data.results);
@@ -26,7 +26,7 @@ function Main() {
                 // console.log("users: ", users);
             })
 
-        return () => { console.log("cleanup") }
+        return () => {}
 
     }, [])
 
@@ -40,9 +40,9 @@ function Main() {
         let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()) 
         || x.name.last.toLowerCase().includes(event.target.value.toLowerCase()) 
         || x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase()) 
-        || x.dob.date.split("T")[0].includes(event.target.value));
+        || x.dob.date.split("T")[0].includes(event.target.value) || (x.name.first.toLowerCase() + x.name.last.toLowerCase()).includes(event.target.value.toLowerCase().replace(/\s+/g, '')));
         setDisplay(arr);
-    }
+    };
 
     return (
         // displays loading if users = 0
