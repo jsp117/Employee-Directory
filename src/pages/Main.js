@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Table from "../components/Table";
 import Header from "../components/header";
+import API from "../utils/API";
 import "./style.css"
 
 // main should hold users in it, below main should be functional components that show the user, another component for searching
@@ -13,22 +14,33 @@ function Main() {
 
 
     useEffect(() => {
-        if (!search) {
-            console.log("running")
-            axios.get("https://randomuser.me/api/?results=200&nat=us")
-                .then((data) => {
-                    console.log(data);
-                    setUsers(data.data.results);
-                    setLoading(false);
-                })
-        } else {
-            axios.get(`https://randomuser.me/api/?${search}`)
-                .then((data) => {
-                    console.log(data);
-                    setUsers(data.data.results);
-                    setLoading(false);
-                })
-        }
+        API.Query()
+            .then((data) => {
+                console.log(data);
+                setUsers(data.data.results);
+                setLoading(false);
+                console.log("users: ", users);
+            })
+
+
+
+
+        // if (!search) {
+        //     console.log("running")
+        //     axios.get("https://randomuser.me/api/?results=200&nat=us")
+        //         .then((data) => {
+        //             console.log(data);
+        //             setUsers(data.data.results);
+        //             setLoading(false);
+        //         })
+        // } else {
+        //     axios.get(`https://randomuser.me/api/?${search}`)
+        //         .then((data) => {
+        //             console.log(data);
+        //             setUsers(data.data.results);
+        //             setLoading(false);
+        //         })
+        // }
     }, [])
 
     function searchUsers() {

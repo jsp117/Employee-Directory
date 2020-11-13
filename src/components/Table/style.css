@@ -2,18 +2,16 @@
     margin-left: -50px;
     overflow-x: hidden;
 }
+
 th{
     cursor: pointer;
     padding-bottom: 25px;
     border-bottom: 5px outset;
-    /* border-style: solid; */
 }
 img{
     transform: translateY(-10px);
 }
 td{
-    /* margin: 10px; */
     padding-top: 20px;
     border: 5px outset;
-    /* border-style: solid; */
 }
