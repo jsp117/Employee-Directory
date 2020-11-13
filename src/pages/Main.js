@@ -54,7 +54,7 @@ function Main() {
         setSearch(event.target.value);
         console.log(event.target.value);
         console.log("search", search);
-        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()));
+        let arr = users.filter(x => x.name.first.toLowerCase().includes(event.target.value.toLowerCase()) || x.name.last.toLowerCase().includes(event.target.value.toLowerCase()) || x.phone.includes(event.target.value) || x.email.toLowerCase().includes(event.target.value.toLowerCase()) || x.dob.date.split("T")[0].includes(event.target.value));
         setDisplay(arr);
     }
 
