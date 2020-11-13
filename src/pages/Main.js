@@ -55,7 +55,6 @@ function Main() {
         let types = {
             nam: "name",
             pho: "phone",
-            ema: "email",
             dob: "dob"
         }
         let sort = types[type];

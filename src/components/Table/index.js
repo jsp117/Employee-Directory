@@ -3,8 +3,8 @@ import "./style.css"
 
 function Table({ loading, users, sort }) {
     return (
-        <div id="table">
-            <table className="container-fluid">
+        <div className="ml-4 mr-2" id="table">
+            <table className="container-fluid text-align">
                 <thead>
                     <tr className="row pt-5">
                         <th className="col">Picture</th>
@@ -16,7 +16,7 @@ function Table({ loading, users, sort }) {
                 </thead>
                 <tbody>{!loading ? users.map(x => {
                     return <tr key={x.login.uuid} className="row">
-                        <td className="col"><img src={x.picture.medium} alt={x.name.first + " " + x.name.last}></img></td>
+                        <td className="col"><img className="img-responsive" src={x.picture.medium} alt={x.name.first + " " + x.name.last}></img></td>
                         <td className="col">{x.name.title + " " + x.name.first + " " + x.name.last}</td>
                         <td className="col">{x.phone}</td>
                         <td className="col">{x.email}</td>
