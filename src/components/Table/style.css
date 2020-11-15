@@ -1,16 +1,16 @@
+.table{
+    margin-bottom: 80px;
+    z-index: 5;
+}
 .sort{
     cursor: pointer;
 }
 .col{
-    font-size: 1vw;
-}
-th{
-    padding-bottom: 25px;
-}
-img{
-    transform: translateY(-15px);
+    word-wrap: break-word;
+    
 }
 td{
-    padding-top: 30px;
-    border: 5px outset;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    background-color: aliceblue;
 }

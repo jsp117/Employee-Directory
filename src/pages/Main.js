@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 // import axios from "axios";
-import Table from "../components/Table";
+// import Table from "../components/Table";
 import Header from "../components/header";
 import API from "../utils/API";
+import Content from "../components/Content";
+import Footer from "../components/Footer";
 import "./style.css"
 
 
@@ -47,7 +49,7 @@ function Main() {
 
     // sort arrays
     function sort(event) {
-        console.log(event);
+        // console.log(event);
         event.preventDefault();
         // console.log("Working");
         let type = event.target.outerText.substring(0, 3).toLowerCase();
@@ -125,7 +127,8 @@ function Main() {
         // displays loading if users = 0
         <div>
             <Header onSubmit={searchUsers} results={search} />
-            <Table loading={loading} users={displayUsers} sort={sort} />
+            <Content loading={loading} users={displayUsers} sort={sort} />
+            <Footer />
         </div>
 
     )
